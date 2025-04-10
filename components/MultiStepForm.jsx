@@ -96,8 +96,8 @@ const MultiStepForm = ({ children }) => {
                                 type="button"
                                 onClick={handlePrevious}
                                 className={`px-4 py-2 rounded-md ${darkMode
-                                        ? "bg-gray-600 hover:bg-gray-500"
-                                        : "bg-gray-200 hover:bg-gray-300"
+                                    ? "bg-gray-600 hover:bg-gray-500"
+                                    : "bg-gray-200 hover:bg-gray-300"
                                     }`}
                             >
                                 Previous
@@ -108,8 +108,8 @@ const MultiStepForm = ({ children }) => {
                         <button
                             type="submit"
                             className={`px-4 py-2 rounded-md text-white ${step === 3
-                                    ? "bg-green-500 hover:bg-green-600"
-                                    : "bg-blue-500 hover:bg-blue-600"
+                                ? "bg-green-500 hover:bg-green-600"
+                                : "bg-blue-500 hover:bg-blue-600"
                                 }`}
                         >
                             {step === 3 ? "Submit" : "Next"}

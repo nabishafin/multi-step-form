@@ -6,12 +6,12 @@ const Navbar = ({ step, darkMode }) => {
                     <div key={stepNumber} className="flex flex-col items-center">
                         <div
                             className={`w-8 h-8 rounded-full flex items-center justify-center ${step === stepNumber
-                                    ? "bg-blue-500 text-white"
-                                    : step > stepNumber
-                                        ? "bg-green-500 text-white"
-                                        : darkMode
-                                            ? "bg-gray-600 text-white"
-                                            : "bg-gray-200 text-gray-700"
+                                ? "bg-blue-500 text-white"
+                                : step > stepNumber
+                                    ? "bg-green-500 text-white"
+                                    : darkMode
+                                        ? "bg-gray-600 text-white"
+                                        : "bg-gray-200 text-gray-700"
                                 }`}
                         >
                             {stepNumber}

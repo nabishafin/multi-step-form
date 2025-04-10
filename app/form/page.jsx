@@ -1,13 +1,20 @@
+'use client';
+
 import MultiStepForm from '@/components/MultiStepForm';
-import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React, { useState } from 'react';
 
+const PageForm = () => {
+    // Initialize the QueryClient on the client side
+    const [queryClient] = useState(() => new QueryClient());
 
-const PAgeForm = () => {
     return (
         <div>
-            <MultiStepForm />
+            <QueryClientProvider client={queryClient}>
+                <MultiStepForm />
+            </QueryClientProvider>
         </div>
     );
 };
 
-export default PAgeForm;
+export default PageForm;

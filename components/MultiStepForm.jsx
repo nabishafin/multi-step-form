@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import PersonalForm from "./PersonalForm/PersonalForm";
 import AddressForm from "./AddressForm/AddressForm";
 import AccountForm from "./AccountForm/AccountForm";
@@ -13,6 +15,11 @@ import {
 import Header from "./Header/Header";
 import Navbar from "./Navbar/Navbar";
 import Summary from "./Summary/Summary";
+
+// Create an Axios instance (optional but recommended)
+const api = axios.create({
+    baseURL: "https://your-api-endpoint.com/api",
+});
 
 const MultiStepForm = ({ children }) => {
     const [step, setStep] = useState(1);
@@ -38,13 +45,31 @@ const MultiStepForm = ({ children }) => {
         defaultValues: formData,
     });
 
+    // Define the mutation for form submission
+    const submitFormMutation = useMutation({
+        mutationFn: (formData) => {
+            return api.post("/submit-form", formData);
+        },
+        onSuccess: (data) => {
+            // Handle successful submission
+            console.log("Form submitted successfully:", data);
+            // You can redirect or show a success message here
+        },
+        onError: (error) => {
+            // Handle error
+            console.error("Error submitting form:", error);
+            // You can show an error message here
+        },
+    });
+
     const onSubmit = (data) => {
         setFormData((prevData) => ({ ...prevData, ...data }));
         if (step < 3) {
             handleNext();
         } else {
-            console.log("Form Submitted:", { ...formData, ...data });
-            // Simulate API call here (React Query/RTK Query)
+            // Combine all form data and submit
+            const finalData = { ...formData, ...data };
+            submitFormMutation.mutate(finalData);
         }
     };
 
@@ -103,18 +128,32 @@ const MultiStepForm = ({ children }) => {
                                 Previous
                             </button>
                         ) : (
-                            <div></div> // Empty div to maintain space-between alignment
+                            <div></div>
                         )}
                         <button
                             type="submit"
+                            disabled={submitFormMutation.isPending}
                             className={`px-4 py-2 rounded-md text-white ${step === 3
-                                ? "bg-green-500 hover:bg-green-600"
+                                ? "bg-blue-500 hover:bg-blue-600"
                                 : "bg-blue-500 hover:bg-blue-600"
-                                }`}
+                                } ${submitFormMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
                         >
-                            {step === 3 ? "Submit" : "Next"}
+                            {submitFormMutation.isPending ? (
+                                "Submitting..."
+                            ) : step === 3 ? (
+                                "Submit"
+                            ) : (
+                                "Next"
+                            )}
                         </button>
                     </div>
+
+                    {/* Show error message if submission fails */}
+                    {submitFormMutation.isError && (
+                        <div className="text-red-500 text-sm mt-2">
+                            Error submitting form: {submitFormMutation.error.message}
+                        </div>
+                    )}
                 </form>
 
                 {/* Form Summary on Step 3 */}

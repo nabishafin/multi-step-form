@@ -21,9 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
-
         <main className="mt-6">{children}</main>
-
       </body>
     </html>
   );

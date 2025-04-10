@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🧾 Multi-Step Form with Validation (React + Next.js)
 
-## Getting Started
+A responsive and accessible multi-step form built using **Next.js (App Router)**, **React Hook Form**, **Zod**, and **TailwindCSS**. This form walks users through entering personal information, address details, and account setup with real-time validation and a summary step before final submission.
 
-First, run the development server:
+---
+
+## 📦 Tech Stack
+
+- **Next.js (App Router)**
+- **React Hook Form** – for form handling
+- **Zod** – for schema-based form validation
+- **TailwindCSS** – for styling (with dark mode support)
+- **React Query** *(Bonus)* – to simulate API interaction
+
+---
+
+## 🧩 Form Structure
+
+### 🔹 Step 1: Personal Information
+- Full Name (required)
+- Email (required, valid email format)
+- Phone Number (required, min 10 digits)
+
+### 🔹 Step 2: Address Details
+- Street Address (required)
+- City (required)
+- Zip Code (required, numeric, min 5 digits)
+
+### 🔹 Step 3: Account Setup
+- Username (required, min 4 characters)
+- Password (required, min 6 characters)
+- Confirm Password (must match password)
+
+### ✅ Final Step: Review
+- Display all form data
+- Option to go back and edit
+- Submit logs data to console or simulates API call
+
+---
+
+## ✨ Features
+
+- ✅ Multi-step navigation with **Next** / **Previous**
+- ✅ Field-level validation with **Zod**
+- ✅ Inline error messages
+- ✅ Final summary before submission
+- ✅ Data stored using local **useState** / **useReducer**
+- ✅ Logs submitted data to console
+- 🌐 Simulated API submission using **React Query**
+- 🌙 **Dark mode** toggle using Tailwind
+- 📱 Fully responsive for mobile users
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
 
 ```bash
+git clone https://github.com/your-username/multi-step-form.git
+cd multi-step-form
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

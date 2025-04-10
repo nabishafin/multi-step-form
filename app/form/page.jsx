@@ -1,5 +1,6 @@
+import MultiStepForm from '@/components/MultiStepForm';
 import React from 'react';
-import MultiStepForm from '../components/AccountForm/MultiStepForm';
+
 
 const PAgeForm = () => {
     return (
